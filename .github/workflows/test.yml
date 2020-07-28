@@ -3,7 +3,7 @@ on: push
 
 jobs:
   one:
-    if: ${{ github.event != 'push' || github.event.repository.full_name != 'priyank-p/test-repo' }}
+    if: ${{ github.event_name != 'push' || github.event.repository.full_name != 'priyank-p/test-repo' }}
     runs-on: ubuntu-16.04
     steps:
       - name: Dump GitHub context
