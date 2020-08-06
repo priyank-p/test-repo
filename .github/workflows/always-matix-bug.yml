@@ -10,14 +10,14 @@ jobs:
           - name: Matrix that runs artifact step 
             is_special: true
  
-          - name: Martix two
+          - name: Matrix two
     steps:
       - name: Fail step
         if: ${{ matrix.is_special }}
         run: exit 1
       
       - name: Upload artifacts (with true flag)
-        if: ${{ matix.is_special }} 
+        if: ${{ matrix.is_special }} 
         run: echo "Would instead use actions/aritifacts!"
       
       - name: Upload artifacts (with always)
