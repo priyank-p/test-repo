@@ -21,4 +21,13 @@ jobs:
       - name: Upload artifacts (with always)
         if: ${{ always() }} 
         run: echo "Would instead use actions/artifacts!"
+        
+      - name: Just testing :)
+        if: ${{ always() }}
+        env:
+          ALWAYS: ${{ always() }}
+          SOME_FLAG: ${{ matrix.some_flag }}
+        run: |
+          echo "Always: $ALWAYS"
+          echo "matrix.some_flag: $SOME_FLAG"
   
