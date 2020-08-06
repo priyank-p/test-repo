@@ -1,4 +1,3 @@
-name: Matix and if always() bug
 on: [push, pull_request]
 
 jobs:
@@ -8,19 +7,18 @@ jobs:
       matrix:
         include:
           - name: Matrix that runs artifact step 
-            is_special: true
- 
-          - name: Matrix two
+            some_flag: true
+
     steps:
       - name: Fail step
-        if: ${{ matrix.is_special }}
+        if: ${{ matrix.some_flag }}
         run: exit 1
       
       - name: Upload artifacts (with true flag)
-        if: ${{ matrix.is_special }} 
-        run: echo "Would instead use actions/aritifacts!"
+        if: ${{ matrix.some_flag }} 
+        run: echo "Would instead use actions/artifacts!"
       
       - name: Upload artifacts (with always)
         if: ${{ always() }} 
-        run: echo "Would instead use actions/aritifacts!"
+        run: echo "Would instead use actions/artifacts!"
   
