@@ -6,11 +6,32 @@ jobs:
     steps:
       - name: Fail step
         run: exit 1
-      
+
       - name: Upload artifacts (with if true check)
-        if: ${{ true }} 
+        if: ${{ true }}
         run: echo "Would instead use actions/artifacts!"
-      
+
       - name: Upload artifacts (with always)
-        if: ${{ always() }} 
+        if: ${{ always() }}
+        run: echo "Would instead use actions/artifacts!"
+
+  bug_with_matrix:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - name: Matrix that runs artifact step
+            some_flag: true
+
+    steps:
+      - name: Fail step
+        if: ${{ matrix.some_flag }}
+        run: exit 1
+
+      - name: Upload artifacts (with true flag)
+        if: ${{ matrix.some_flag }}
+        run: echo "Would instead use actions/artifacts!"
+
+      - name: Upload artifacts (with always)
+        if: ${{ always() }}
         run: echo "Would instead use actions/artifacts!"
