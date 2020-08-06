@@ -21,13 +21,17 @@ jobs:
       - name: Upload artifacts (with always)
         if: ${{ always() }} 
         run: echo "Would instead use actions/artifacts!"
-        
-      - name: Just testing :)
-        if: ${{ always() }}
-        env:
-          ALWAYS: ${{ always() }}
-          SOME_FLAG: ${{ matrix.some_flag }}
-        run: |
-          echo "Always: $ALWAYS"
-          echo "matrix.some_flag: $SOME_FLAG"
-  
+
+  bug_without_matrix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail step
+        run: exit 1
+      
+      - name: Upload artifacts (with if true check)
+        if: ${{ true }} 
+        run: echo "Would instead use actions/artifacts!"
+      
+      - name: Upload artifacts (with always)
+        if: ${{ always() }} 
+        run: echo "Would instead use actions/artifacts!"
